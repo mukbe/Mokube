@@ -1,0 +1,142 @@
+===================================================
+ 2020.1.11	17:18:34	 'Directx11 2D' Start Succeeded
+17:19:31	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+			 End
+===================================================
+===================================================
+ 2020.1.11	17:41:56	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	17:48:57	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	17:49:27	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	17:50:38	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	17:57:05	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	17:57:15	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:23:45	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:25:33	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	18:25:49	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:28:38	 'Directx11 2D' Start Succeeded
+18:28:42	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:29:34	 'Directx11 2D' Start Succeeded
+			 End
+===================================================
+===================================================
+ 2020.1.11	18:29:56	 'Directx11 2D' Start Succeeded
+18:30:00	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:30:18	 'Directx11 2D' Start Succeeded
+18:30:22	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:30:48	 'Directx11 2D' Start Succeeded
+18:30:52	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:33:41	 'Directx11 2D' Start Succeeded
+18:33:46	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:34:52	 'Directx11 2D' Start Succeeded
+18:34:56	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:35:17	 'Directx11 2D' Start Succeeded
+18:35:20	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:35:47	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:36:44	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:37:43	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:38:37	 'Directx11 2D' Start Succeeded
+18:38:43	Fatal Assertion Failure!
+File: e:\_mokube\directtool\systems\message\datacontext.h
+Line: 40
+Code: bad_any_cast
+			 End
+===================================================
+===================================================
+ 2020.1.11	18:39:06	 'Directx11 2D' Start Succeeded
+===================================================
+ 2020.1.11	18:42:32	 'Directx11 2D' Start Succeeded
+18:43:01	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:43:54	 'Directx11 2D' Start Succeeded
+18:43:58	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:45:07	 'Directx11 2D' Start Succeeded
+18:45:11	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:45:51	 'Directx11 2D' Start Succeeded
+18:45:55	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:47:36	 'Directx11 2D' Start Succeeded
+18:47:42	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:48:27	 'Directx11 2D' Start Succeeded
+18:48:31	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+===================================================
+ 2020.1.11	18:49:00	 'Directx11 2D' Start Succeeded
+18:49:03	Assertion Failure!
+File: e:\_mokube\directtool\render\imagemanager.cpp
+Line: 37
+Code: Already Init this key
+			 End
+===================================================

@@ -4,6 +4,10 @@
 
 class TileMap
 {
+private:
+	//디폴트로 생성할 타일 이미지의 프레임 수 
+	const POINT DefaultTileImageFrame = { 2,2 };
+
 public:
 	static POINT tileMaxIndex;
 	static D3DXVECTOR2 tileSize;
@@ -23,10 +27,9 @@ public:
 private:
 	void Save(wstring file);
 	void Load(wstring file = L"");
-	void ChangeFrameImage(wstring file);
 
-	//POINT tileMaxIndex;
-	//D3DXVECTOR2 tileSize;
+	static bool bImmovable;
+
 
 	vector<class Tile*> tiles;
 	vector<class Tile*> pickedTiles;
@@ -51,8 +54,5 @@ private:
 	shared_ptr<Texture> frameTexture;
 	string frameTextureKey;
 
-private:
-	//디폴트로 생성할 타일 이미지의 프레임 수 
-	const POINT DefaultTileImageFrame = { 16,9 };
 };
 

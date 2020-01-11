@@ -2,14 +2,23 @@
 #include "Tile.h"
 #include "ObjectManager.h"
 
+
+
+Tile::Tile()
+{
+	tileIndex = { 0,0 };
+	attribute = 0;
+}
+
 Tile::Tile(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivot p)
 	:GameObject(name, pos, size, type, p)
 {
 	tileMapImage = _ImageManager->FindTexture("DefaultTileMap");
 
-	tileIndex = { 12,2 };
+	tileIndex = { 0,0 };
 	bPicked = false;
 	bOnMouse = false;
+	attribute = 0;
 	pickedRect = FloatRect(D3DXVECTOR2(0, 0), size, Pivot::LEFT_TOP);
 
 	AddCallBackFunc();
@@ -18,6 +27,13 @@ Tile::Tile(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivo
 
 Tile::~Tile()
 {
+}
+
+void Tile::CopyTile(Tile & other)
+{
+	tileMapImage = other.tileMapImage;
+	tileIndex = other.tileIndex;
+	attribute = other.attribute;
 }
 
 void Tile::Init(int tileIndexX, int tileIndexY)
@@ -90,9 +106,9 @@ void Tile::AddCallBackFunc()
 		tileIndex.y = index.y;
 	});
 	AddCallback("SetTileAttribute", [&](TagMessage msg) {
-		int attri = msg.Data->GetValue<int>();
+		int mask = msg.Data->GetValue<int>();
 
-		SetAttribute(attri);
+		SetAttribute(mask);
 
 	});
 	AddCallback("InMouse", [&](TagMessage msg) {

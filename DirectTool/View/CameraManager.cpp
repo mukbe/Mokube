@@ -11,7 +11,7 @@ CameraManager::CameraManager()
 	pos = D3DXVECTOR2(0.f,0.f);
 	zoom = 1.f;
 	view = Matrix2D(pos, D3DXVECTOR2(WinSizeX, WinSizeY), Pivot::LEFT_TOP);
-	buffer = new CameraBuffer;
+	buffer = make_unique<CameraBuffer>();
 
 	UpdateMatrix();
 	UpdateRenderRect();
@@ -20,7 +20,7 @@ CameraManager::CameraManager()
 
 CameraManager::~CameraManager()
 {
-	SafeDelete(buffer);
+
 }
 
 void CameraManager::Update()
@@ -119,7 +119,6 @@ BOOL CameraManager::IsCollision(D3DXVECTOR2 p)
 {
 	FloatRect rc(p.x, p.y, WinSizeX / zoom, WinSizeY / zoom);
 
-
 	if (rc.left <= p.x &&
 		rc.right >= p.x &&
 		rc.top <= p.y &&
@@ -134,7 +133,6 @@ void CameraManager::CameraDataBind()
 {
 	//쉐이더에서 사용할 카메라의 행렬을 바인딩하면 쉐이더에 항상 들어감
 
-
 	buffer->Setting(view.GetResult());
 	buffer->SetPSBuffer(0);
 	buffer->SetVSBuffer(0);
@@ -142,10 +140,8 @@ void CameraManager::CameraDataBind()
 
 void CameraManager::UpdateMatrix()
 {
-
 	view.SetPos(-pos);
 	view.SetScale(zoom);
-
 }
 
 void CameraManager::ClipMouse()

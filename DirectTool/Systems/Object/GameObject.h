@@ -5,6 +5,7 @@ class Matrix2D;
 class GameObject : public MessageComponent
 {
 public:
+	GameObject(string name = "None");
 	GameObject(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivot p = Pivot::CENTER);
 	virtual~GameObject();
 
@@ -53,7 +54,6 @@ public:
 	const D3DXVECTOR2& GetSize() { return size; }
 
 
-	int GetDir() { return 1; }
 
 
 

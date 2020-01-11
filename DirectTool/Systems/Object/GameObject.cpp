@@ -2,8 +2,15 @@
 #include "GameObject.h"
 #include "./Utilities/Matrix2D.h"
 
+GameObject::GameObject(string name)
+	: name(name), bActive(true), worldBuffer(nullptr), shader(nullptr), transform(nullptr)
+	, alpha(1.f), lifeTiem(0.f), frameTime(0.f)
+
+{
+}
+
 GameObject::GameObject(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type ,Pivot p)
-	: name(name), bActive(true), worldBuffer(nullptr), shader(nullptr)
+	: name(name), bActive(true), worldBuffer(nullptr), shader(nullptr), transform(nullptr)
 	, alpha(1.f), size(size),  lifeTiem(0.f), frameTime(0.f), objectType(type)
 {
 	//worldBuffer = new WorldBuffer;

@@ -8,7 +8,7 @@
 POINT TileMap::tileMaxIndex;
 D3DXVECTOR2 TileMap::tileSize = { 32.f,32.f };
 bool TileMap::bLoadFrame = false;
-
+bool TileMap::bImmovable = false;
 TileMap::TileMap()
 {
 	jsonRoot = make_unique<Json::Value>();
@@ -52,7 +52,6 @@ void TileMap::Update(float tick)
 		currentIndex.x = (LONG)(pos.x / tileSize.x);
 		currentIndex.y = (LONG)(pos.y / tileSize.y);
 
-
 		currentIndex.x = Math::Clamp(currentIndex.x, 0, tileMaxIndex.x - 1);
 		currentIndex.y = Math::Clamp(currentIndex.y, 0, tileMaxIndex.y - 1);
 
@@ -75,7 +74,8 @@ void TileMap::Update(float tick)
 				POINT frameIndex = pickedframes[0]->GetTileIndex();
 				if (index.x != frameIndex.x || index.y != frameIndex.y)
 				{
-					_GameWorld->GetMessagePool()->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetTileIndex", frameIndex);
+					_GameWorld->GetMessagePool()->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetTileIndex", 0, frameIndex);
+					_MessagePool->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetTileAttribute", 0, (int)Tile::TileBitAttribute::Immovable);
 				}
 			}
 		}
@@ -149,6 +149,8 @@ void TileMap::ImguiRender()
 			ImGui::EndTooltip();
 
 		}
+		ImGui::Checkbox(u8"못 움직여 속성", &bImmovable);
+
 
 		if (ImGui::Button(u8"저장"))
 		{
@@ -236,9 +238,7 @@ void TileMap::Save(wstring file)
 	str = String::WStringToString(tiledataPath);
 	JsonHelper::SetValue(tileData, "TileData", str);
 
-
-	vector<POINT> lut;
-
+	vector<Tile> lut;
 	BinaryWriter* w = new BinaryWriter();
 	w->Open(tiledataPath);
 	{
@@ -255,7 +255,9 @@ void TileMap::Save(wstring file)
 				for (int i = 0; i < lut.size(); i++)
 				{
 					//lut에 있는지 확인하고 있으면 lut번호로 추가
-					if (lut[i].x == tile->GetTileIndex().x && lut[i].y == tile->GetTileIndex().y)
+					if (lut[i].GetTileIndex().x == tile->GetTileIndex().x &&
+						lut[i].GetTileIndex().y == tile->GetTileIndex().y && 
+						lut[i].GetAttribute() == tile->GetAttribute())
 					{
 						//바이너리로 LUT인덱스 저장
 						w->Int(i);
@@ -265,7 +267,9 @@ void TileMap::Save(wstring file)
 				//lut에 없으면 인덱스 추가
 				if (bCheck)
 				{
-					lut.push_back(tile->GetTileIndex());
+					Tile temp;
+					temp.CopyTile(*tile);
+					lut.push_back(temp);
 					int index = lut.size() - 1;
 					w->Int(index);
 
@@ -287,9 +291,13 @@ void TileMap::Save(wstring file)
 		for (int i = 0; i < lut.size(); i++)
 		{
 			D3DXVECTOR2 index;
-			index.x = lut[i].x;
-			index.y = lut[i].y;
+			index.x = lut[i].GetTileIndex().x;
+			index.y = lut[i].GetTileIndex().y;
 			wLUT->Vector2(index);
+
+			int attribute;
+			attribute = lut[i].GetAttribute();
+			wLUT->Int(attribute);
 		}
 	}
 	wLUT->Close();
@@ -373,7 +381,7 @@ void TileMap::Load(wstring file)
 
 	}
 
-	vector<POINT> lut;
+	vector<Tile> lut;
 	if (tileLUT.isNull() == false)
 	{
 		string tileLUTPath;
@@ -385,29 +393,30 @@ void TileMap::Load(wstring file)
 			UINT lutSize;
 			lutSize = r->UInt();
 
-			D3DXVECTOR2 index;
-			POINT pt;
 			for (int i = 0; i < lutSize; i++)
 			{
+				Tile tile;
+				D3DXVECTOR2 index;
 				index = r->Vector2();
-				pt.x = index.x;
-				pt.y = index.y;
-				lut.push_back(pt);
+				tile.Init(index.x, index.y);
+				
+				int mask;
+				mask = r->Int();
+				tile.SetAttribute(mask);
 
+				//이미지도 추가해줌
+				tile.SetTexture(loadImageKey);
+
+				lut.push_back(tile);
 			}
-
-
 		}
 		r->Close();
 	}
 
 	for (int i = 0; i < tiles.size(); i++)
 	{
-		POINT index = lut[tileLUTIndex[i]];
-		tiles[i]->Init(index.x, index.y);
-		tiles[i]->SetTexture(loadImageKey);
+		tiles[i]->CopyTile(lut[tileLUTIndex[i]]);
+
 	}
-
-
 }
 

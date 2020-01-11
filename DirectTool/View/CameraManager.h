@@ -58,13 +58,10 @@ private:
 	private:
 		struct Struct
 		{
-
 			D3DXVECTOR4 Matrix;
 
 			D3DXVECTOR2 CameraPos;
 			D3DXVECTOR2 Padding;
-
-			
 
 		}data;
 
@@ -78,11 +75,9 @@ private:
 			data.CameraPos = { mat._31,mat._32 };
 			memcpy(&data.Matrix, &mat, sizeof(FLOAT)*4);
 		}
-
-
 	};
 
-	CameraBuffer* buffer;
+	unique_ptr<CameraBuffer> buffer;
 
 
 };

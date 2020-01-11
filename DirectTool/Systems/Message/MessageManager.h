@@ -23,7 +23,7 @@ public:
 	void ReserveMessage(MessageComponent* gameObject, string name, float delay = 0.f);
 	//데이터를 같이 메세지로 예약
 	template<typename T>
-	void ReserveMessage(MessageComponent* gameObject, string name, const T& data, float delay = 0.f);
+	void ReserveMessage(MessageComponent* gameObject, string name, float delay, const T& data);
 
 	void ReturnData(DataContext* const data);
 
@@ -40,7 +40,7 @@ private:
 };
 
 template<typename T>
-inline void MessageManager::ReserveMessage(MessageComponent * gameObject, string name, const T & data, float delay)
+inline void MessageManager::ReserveMessage(MessageComponent * gameObject, string name, float delay, const T & data)
 {
 	DataContext* const value = GetData();
 	value->SetValue(data);

@@ -5,16 +5,26 @@
 class Tile : public GameObject
 {
 public:
-	enum Attribute : int
+	template<size_t N>
+	struct Bit
 	{
-		Move = 0,
-		Slow = 1 << 0,
-		Damge = 1 << 1
-
+		static constexpr int Value = 31 < N ? 0 : 1 << N;
 	};
 
+
+	enum TileBitAttribute : int
+	{
+		Immovable = Bit<1>::Value,
+		
+	};
+
+
+	Tile();
 	Tile(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivot p = Pivot::CENTER);
 	virtual~Tile();
+
+	void CopyTile(Tile& other);
+
 
 	void Init(int tileIndexX, int tileIndexY);
 	void SetTexture(string key);
@@ -31,6 +41,8 @@ public:
 
 	void AddCallBackFunc();
 	POINT GetTileIndex() { return tileIndex; }
+	int GetAttribute() { return attribute; }
+	void SetAttribute(int val);
 
 private:
 	POINT tileIndex;
@@ -39,7 +51,6 @@ private:
 	bool bPicked;
 	bool bOnMouse;
 	FloatRect pickedRect;
-	void SetAttribute(int val);
 
 
 };

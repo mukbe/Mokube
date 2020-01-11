@@ -96,4 +96,3 @@ void Program::ResizeScreen()
 	D3DDesc desc;
 	DxRenderer::GetDesc(&desc);
 }
-

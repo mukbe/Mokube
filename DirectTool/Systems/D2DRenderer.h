@@ -9,9 +9,6 @@ namespace DefaultBrush
 }
 
 
-//TODO 2D평면상의 World Setting을 해줄 Matrix랩핑클래스를 생성해서 사용하기 쉽도록 바꿔야 함
-//랜더링시에 카메라와 상대적인 값을 가질지 선택하여 ui와 오브젝트의 렌더링을 관리
-//Matrix의 곱은 SRT순으로 하고 SetTransform으로 정해주면 상식적으로 생각하는 좌표평면에서의 움직임을 나타낼 수 있을 듯
 
 class D2DRenderer
 {

@@ -1,6 +1,6 @@
 {
    "ImageData" : {
-      "FrameMaxIndex" : [ 16.0, 9.0 ],
+      "FrameMaxIndex" : [ 2.0, 2.0 ],
       "ImagePath" : [ "../_Resources/DefaultTileMap.png" ]
    },
    "TileData" : {
