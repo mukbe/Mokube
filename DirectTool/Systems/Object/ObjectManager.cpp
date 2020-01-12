@@ -7,14 +7,12 @@ ObjectManager::ObjectManager()
 	mapObjects.clear();
 	vector<class GameObject*> arrTemp;
 	arrTemp.clear();
-	mapObjects.insert(make_pair(Background, arrTemp));
-	mapObjects.insert(make_pair(Character, arrTemp));
-	mapObjects.insert(make_pair(Monster, arrTemp));
-	mapObjects.insert(make_pair(Interact, arrTemp));
-	mapObjects.insert(make_pair(StaticObject, arrTemp));
-	mapObjects.insert(make_pair(Projectile, arrTemp));
-	mapObjects.insert(make_pair(Effect, arrTemp));
-	mapObjects.insert(make_pair(UI, arrTemp));
+	//mapObjects.insert(make_pair(Background, arrTemp));
+	//mapObjects.insert(make_pair(Character, arrTemp));
+	//mapObjects.insert(make_pair(Monster, arrTemp));
+	//mapObjects.insert(make_pair(StaticObject, arrTemp));
+	//mapObjects.insert(make_pair(Effect, arrTemp));
+	//mapObjects.insert(make_pair(UI, arrTemp));
 }
 
 
@@ -29,8 +27,9 @@ ObjectManager::~ObjectManager()
 		for (size_t t = 0; t < arrTemp.size();t++)
 		{
 			SafeDelete(arrTemp[t]);
-			arrTemp.erase(arrTemp.begin() + t);
+			//arrTemp.erase(arrTemp.begin() + t);
 		}
+		arrTemp.clear();
 	}
 
 }
@@ -223,23 +222,21 @@ GameObject * ObjectManager::FindObjectByName(ObjectType type, string inputName)
 
 GameObject * ObjectManager::FindObjectByName(string inputName)
 {
-	MapIter mapEnd = mapObjects.end();
 	
-	for (MapIter mapIter = mapObjects.begin(); mapIter != mapEnd; ++mapIter)
+	MapIter Iter = mapObjects.begin();
+	for (; Iter != mapObjects.end(); ++Iter)
 	{
-		vector<class GameObject*>*  arrTemp = &(mapIter->second);
-		ArrIter arrIter = arrTemp->begin(), arrEnd = arrTemp->end();
-	
-		for (; arrIter != arrEnd;)
+		vector<GameObject*>  arrTemp = Iter->second;	
+		for (size_t t = 0; t < arrTemp.size() ; t++)
 		{
-			string tempName = (*arrIter)->Name();
-	
-			if (inputName == tempName)
+			if (inputName == arrTemp[t]->Name())
 			{
-				return (*arrIter);
+				return arrTemp[t];
 			}
 		}
 	}
+
+	LOG->Print("No Exist Object");
 	return nullptr;
 	
 }

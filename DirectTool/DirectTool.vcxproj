@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\PathFinder\PathFinder.cpp" />
+    <ClCompile Include="Systems\Object\Player.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Render\ImageManager.cpp" />
     <ClCompile Include="Scenes\SceneBase.cpp" />
@@ -172,6 +174,9 @@
     <ClCompile Include="Systems\Object\GameObject.cpp" />
     <ClCompile Include="Systems\Object\Tile.cpp" />
     <ClCompile Include="Systems\Object\TileMap.cpp" />
+    <ClCompile Include="Systems\Object\Unit.cpp" />
+    <ClCompile Include="Systems\Object\Tank.cpp" />
+    <ClCompile Include="Scenes\TurnControl.cpp" />
     <ClCompile Include="Utilities\Line.cpp" />
     <ClCompile Include="Utilities\Matrix2D.cpp" />
     <ClCompile Include="Utilities\FloatRect.cpp" />
@@ -201,6 +206,8 @@
     <ClCompile Include="Utilities\String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Systems\PathFinder\PathFinder.h" />
+    <ClInclude Include="Systems\Object\Player.h" />
     <ClInclude Include="Scenes\AStarScene.h" />
     <ClInclude Include="Render\ImageManager.h" />
     <ClInclude Include="Scenes\SceneBase.h" />
@@ -215,6 +222,9 @@
     <ClInclude Include="Systems\Object\GameObject.h" />
     <ClInclude Include="Systems\Object\Tile.h" />
     <ClInclude Include="Systems\Object\TileMap.h" />
+    <ClInclude Include="Systems\Object\Unit.h" />
+    <ClInclude Include="Systems\Object\Tank.h" />
+    <ClInclude Include="Scenes\TurnControl.h" />
     <ClInclude Include="Utilities\Line.h" />
     <ClInclude Include="Utilities\Matrix2D.h" />
     <ClInclude Include="Utilities\FloatRect.h" />

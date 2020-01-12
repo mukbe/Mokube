@@ -16,7 +16,7 @@ public:
 	void AddScene(SceneBase* node);
 	void PopScene();
 	void ChangeScene(SceneBase* node);
-	SceneBase* GetNowScene() ;
+	SceneBase* GetNowScene();
 private:
 	stack<SceneBase*> scenes;
 
@@ -27,3 +27,5 @@ private:
 #define _GameWorld SceneManager::Get()->GetNowScene()
 #define _MessagePool SceneManager::Get()->GetNowScene()->GetMessagePool()
 #define _ObjectPool SceneManager::Get()->GetNowScene()->GetObjectPool()
+#define _TileMap SceneManager::Get()->GetNowScene()->GetTileMap()
+#define _PathFinder SceneManager::Get()->GetNowScene()->GetPathFinder()

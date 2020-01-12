@@ -19,14 +19,14 @@ public:
 	};
 
 
-	Tile();
+	Tile(string name = "Tile");
 	Tile(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivot p = Pivot::CENTER);
 	virtual~Tile();
 
-	void CopyTile(Tile& other);
+	void CopyTile(Tile* other);
 
 
-	void Init(int tileIndexX, int tileIndexY);
+	void InitFrame(int frameX, int frameY);
 	void SetTexture(string key);
 	virtual void Init();
 	virtual void Release();
@@ -43,7 +43,8 @@ public:
 	POINT GetTileIndex() { return tileIndex; }
 	int GetAttribute() { return attribute; }
 	void SetAttribute(int val);
-
+	void SetIndex(POINT pt) { tileIndex = pt; }
+	void SetIndex(int x, int y) { tileIndex = { x,y }; }
 private:
 	POINT tileIndex;
 	shared_ptr<Texture> tileMapImage;

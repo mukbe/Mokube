@@ -24,7 +24,7 @@ void TileMap::Init(wstring file)
 {
 	if (file.size() == 0)
 	{
-		wstring path = L"DefaultTileMap.png";
+		wstring path = ResourcePath + L"DefaultTileMap.png";
 		frameTextureKey = String::WStringToString(Path::GetFileNameWithoutExtension(path));
 		if (_ImageManager->AddFrameTexture(frameTextureKey, path, DefaultTileImageFrame.x, DefaultTileImageFrame.y))
 			frameTexture = _ImageManager->FindTexture(frameTextureKey);
@@ -74,7 +74,7 @@ void TileMap::Update(float tick)
 				POINT frameIndex = pickedframes[0]->GetTileIndex();
 				if (index.x != frameIndex.x || index.y != frameIndex.y)
 				{
-					_GameWorld->GetMessagePool()->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetTileIndex", 0, frameIndex);
+					_GameWorld->GetMessagePool()->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetFrameIndex", 0, frameIndex);
 					_MessagePool->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetTileAttribute", 0, (int)Tile::TileBitAttribute::Immovable);
 				}
 			}
@@ -211,8 +211,8 @@ void TileMap::LoadFrame(string key)
 	{
 		for (int x = 0; x < (int)frameMaxIndex.x; x++)
 		{
-			Tile* tile = new Tile("Tile", D3DXVECTOR2(frameStart.x + frameSize.x * x, frameStart.y + frameSize.y * y), frameSize, ObjectType::Projectile, Pivot::LEFT_TOP);
-			tile->Init(x, y);
+			Tile* tile = new Tile("Tile", D3DXVECTOR2(frameStart.x + frameSize.x * x, frameStart.y + frameSize.y * y), frameSize, ObjectType::Tiles, Pivot::LEFT_TOP);
+			tile->SetIndex(x, y);
 			tile->SetTexture(defaultKey);
 			frames.push_back(tile);
 			_GameWorld->GetObjectPool()->AddObject(tile);
@@ -222,6 +222,38 @@ void TileMap::LoadFrame(string key)
 	pickedTiles.clear();
 
 
+}
+
+D3DXVECTOR2 TileMap::GetTilePos(POINT index)
+{
+	return tiles[tileMaxIndex.x * index.y + index.x]->Transform().GetPos();
+}
+
+Tile * TileMap::GetTile(POINT pt)
+{
+	if (pt.x < 0 || pt.y < 0 ||
+		pt.x >= tileMaxIndex.x || pt.y >= tileMaxIndex.y)
+		return nullptr;
+
+
+	return tiles[tileMaxIndex.x * pt.y + pt.x];
+}
+
+Tile * TileMap::GetTile(int x, int y)
+{
+	if (x < 0 || y < 0 ||
+		x >= tileMaxIndex.x || y >= tileMaxIndex.y)
+		return nullptr;
+
+	return tiles[tileMaxIndex.x * y + x];
+}
+
+Tile * TileMap::GetTile(D3DXVECTOR2 pos)
+{
+	int x = (int)(pos.x / tileSize.x);
+	int y = (int)(pos.y / tileSize.y);
+
+	return GetTile(x, y);
 }
 
 void TileMap::Save(wstring file)
@@ -268,7 +300,7 @@ void TileMap::Save(wstring file)
 				if (bCheck)
 				{
 					Tile temp;
-					temp.CopyTile(*tile);
+					temp.CopyTile(tile);
 					lut.push_back(temp);
 					int index = lut.size() - 1;
 					w->Int(index);
@@ -374,6 +406,7 @@ void TileMap::Load(wstring file)
 			for (int x = 0; x < tileMaxIndex.x; x++)
 			{
 				Tile* tile = new Tile("Tile", D3DXVECTOR2(tileSize.x * x, tileSize.y * y), tileSize, ObjectType::Tiles, Pivot::LEFT_TOP);
+				tile->SetIndex(x, y);
 				tiles.push_back(tile);
 				_GameWorld->GetObjectPool()->AddObject(tile);
 			}
@@ -398,7 +431,7 @@ void TileMap::Load(wstring file)
 				Tile tile;
 				D3DXVECTOR2 index;
 				index = r->Vector2();
-				tile.Init(index.x, index.y);
+				tile.InitFrame(index.x, index.y);
 				
 				int mask;
 				mask = r->Int();
@@ -415,7 +448,7 @@ void TileMap::Load(wstring file)
 
 	for (int i = 0; i < tiles.size(); i++)
 	{
-		tiles[i]->CopyTile(lut[tileLUTIndex[i]]);
+		tiles[i]->CopyTile(&lut[tileLUTIndex[i]]);
 
 	}
 }

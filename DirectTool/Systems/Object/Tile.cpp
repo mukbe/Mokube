@@ -4,7 +4,7 @@
 
 
 
-Tile::Tile()
+Tile::Tile(string name)
 {
 	tileIndex = { 0,0 };
 	attribute = 0;
@@ -29,17 +29,18 @@ Tile::~Tile()
 {
 }
 
-void Tile::CopyTile(Tile & other)
+void Tile::CopyTile(Tile* other)
 {
-	tileMapImage = other.tileMapImage;
-	tileIndex = other.tileIndex;
-	attribute = other.attribute;
+	tileMapImage = other->tileMapImage;
+	frameX = other->frameX;
+	frameY = other->frameY;
+	attribute = other->attribute;
 }
 
-void Tile::Init(int tileIndexX, int tileIndexY)
+void Tile::InitFrame(int frameX, int frameY)
 {
-	tileIndex.x = tileIndexX;
-	tileIndex.y = tileIndexY;
+	this->frameX = frameX;
+	this->frameY = frameY;
 
 }
 
@@ -72,7 +73,7 @@ void Tile::Render(bool isRelative)
 {
 	if (bActive == false)return;
 
-	Matrix2D world = *transform;
+	Matrix2D world = transform;
 
 	if (isRelative)
 	{
@@ -82,7 +83,7 @@ void Tile::Render(bool isRelative)
 
 	if (tileMapImage)
 	{
-		tileMapImage->FrameRender(tileIndex.x, tileIndex.y, size);
+		tileMapImage->FrameRender(frameX, frameY, size);
 	}
 	else
 	{
@@ -100,10 +101,10 @@ void Tile::Render(bool isRelative)
 
 void Tile::AddCallBackFunc()
 {
-	AddCallback("SetTileIndex", [&](TagMessage msg) {
+	AddCallback("SetFrameIndex", [&](TagMessage msg) {
 		POINT index = msg.Data->GetValue<POINT>();
-		tileIndex.x = index.x;
-		tileIndex.y = index.y;
+		frameX = index.x;
+		frameY = index.y;
 	});
 	AddCallback("SetTileAttribute", [&](TagMessage msg) {
 		int mask = msg.Data->GetValue<int>();

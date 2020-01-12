@@ -5,7 +5,7 @@ enum Pivot
 };
 enum ObjectType : short
 {
-	Background = 0, Character, Monster, Interact, StaticObject, Projectile, Effect, UI, Tiles, ObjectType_End
+	Background = 0, Tiles, StaticObject, Character, Monster, Effect, UI, ObjectType_End
 };
 enum TileType
 {

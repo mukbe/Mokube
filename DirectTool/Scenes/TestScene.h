@@ -21,6 +21,5 @@ public:
 	virtual void ImguiRender();
 
 private:
-	TileMap* map;
 };
 

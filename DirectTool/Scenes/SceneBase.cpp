@@ -3,10 +3,10 @@
 
 #include "./Systems/Object/ObjectManager.h"
 #include "./Systems/Message/MessageManager.h"
-
+#include "./Systems/PathFinder/PathFinder.h"
 
 SceneBase::SceneBase()
-	:objectManager(new ObjectManager), messageManager(new MessageManager)
+	:objectManager(new ObjectManager), messageManager(new MessageManager), pathFinder(new PathFinder)
 {
 	
 }
@@ -17,6 +17,10 @@ SceneBase::~SceneBase()
 	Release();
 	SafeDelete(objectManager);
 	SafeDelete(messageManager);
+	SafeDelete(pathFinder);
+	
+	SafeDelete(tileMap);
+	
 }
 
 void SceneBase::Init()
@@ -59,3 +63,4 @@ void SceneBase::ImguiRender()
 {
 	objectManager->ImguiRender();
 }
+

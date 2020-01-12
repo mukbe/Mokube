@@ -4,6 +4,7 @@
 class Matrix2D;
 class GameObject : public MessageComponent
 {
+	using VertexType = VertexColor;
 public:
 	GameObject(string name = "None");
 	GameObject(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type, Pivot p = Pivot::CENTER);
@@ -35,7 +36,7 @@ public:
 	void SetObjectType(ObjectType t) { objectType = t; }
 	ObjectType GetObjectType() { return objectType; }
 
-	Matrix2D* Transform() { return transform; }
+	Matrix2D& Transform() { return transform; }
 
 	const bool& IsActive() { return bActive; }
 	void SetActive(const bool& b) { bActive = b; }
@@ -63,7 +64,7 @@ public:
 protected:
 	string name;
 	ObjectType objectType;
-	Matrix2D* transform;
+	Matrix2D transform;
 	D3DXVECTOR2 size;
 	bool bActive;
 
@@ -85,7 +86,8 @@ protected:
 
 
 private:
-	WorldBuffer * worldBuffer;
-	Shader* shader;
+	string shaderKey;
+	WorldBuffer* worldBuffer;
+
 };
 

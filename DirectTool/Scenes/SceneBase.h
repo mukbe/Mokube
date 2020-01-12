@@ -19,10 +19,15 @@ public:
 
 	class MessageManager* GetMessagePool() { return messageManager; }
 	class ObjectManager* GetObjectPool() { return objectManager; }
+	class TileMap* GetTileMap() { return tileMap; }
+	class PathFinder* GetPathFinder() { return pathFinder; }
+
+
 protected:
 	class ObjectManager* objectManager;
 	class MessageManager* messageManager;
-	
+	class TileMap* tileMap;
+	class PathFinder* pathFinder;
 
 };
 

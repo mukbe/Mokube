@@ -16,28 +16,32 @@ ShaderManager::~ShaderManager()
 
 	for (Iter; Iter != shaders.end(); ++Iter)
 	{
-		SafeDelete(Iter->second);
+		if (Iter->second.use_count() != 1)
+		{
+			LOG->Warning(__FILE__, __LINE__, "shared_ptr<Shader> use count != 1");
+		}
+
 	}
 
 	shaders.clear();
 }
 
 
-Shader * ShaderManager::CreateShader(string key, wstring fileName, Shader::ShaderType type, string funcName)
+shared_ptr<Shader> ShaderManager::CreateShader(string key, wstring fileName, Shader::ShaderType type, string funcName)
 {
-	Shader* shader;
+	shared_ptr<Shader> shader;
 	shader = FindShader(key);
 
 	if (shader == nullptr)
 	{
-		shader = new Shader(ShaderPath + fileName, type, funcName);
+		shader = make_shared<Shader>(ShaderPath + fileName, type, funcName);
 		shaders.insert(make_pair(key, shader));
 	}
 
 	return shader;
 }
 
-Shader * ShaderManager::FindShader(string key)
+shared_ptr<Shader> ShaderManager::FindShader(string key)
 {
 	ShadersIter Iter = shaders.begin();
 

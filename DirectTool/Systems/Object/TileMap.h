@@ -2,6 +2,7 @@
 #include "./Utilities/BinaryFile.h"
 
 
+class Tile;
 class TileMap
 {
 private:
@@ -23,7 +24,13 @@ public:
 
 	void LoadStage();
 	void LoadFrame(string key = "");
-	
+
+	vector< Tile*> GetTiles() { return tiles; }
+	D3DXVECTOR2 GetTilePos(POINT index); 
+	Tile* GetTile(POINT pt);
+	Tile* GetTile(int x, int y);
+
+	Tile* GetTile(D3DXVECTOR2 pos);
 private:
 	void Save(wstring file);
 	void Load(wstring file = L"");
@@ -31,8 +38,8 @@ private:
 	static bool bImmovable;
 
 
-	vector<class Tile*> tiles;
-	vector<class Tile*> pickedTiles;
+	vector<Tile*> tiles;
+	vector<Tile*> pickedTiles;
 
 	POINT currentIndex;
 	POINT oldIndex;
@@ -47,8 +54,8 @@ private:
 	POINT oldFrameIndex;
 	POINT pickIndex;
 
-	vector<class Tile*> frames;
-	vector<class Tile*> pickedframes;
+	vector<Tile*> frames;
+	vector<Tile*> pickedframes;
 
 	unique_ptr<class Json::Value> jsonRoot;
 	shared_ptr<Texture> frameTexture;

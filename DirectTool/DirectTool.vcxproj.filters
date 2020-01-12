@@ -61,6 +61,11 @@
     <ClCompile Include="Systems\Object\Tile.cpp" />
     <ClCompile Include="Systems\Object\TileMap.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />
+    <ClCompile Include="Systems\Object\Player.cpp" />
+    <ClCompile Include="Systems\Object\Unit.cpp" />
+    <ClCompile Include="Systems\Object\Tank.cpp" />
+    <ClCompile Include="Systems\PathFinder\PathFinder.cpp" />
+    <ClCompile Include="Scenes\TurnControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DefineHeader.h" />
@@ -140,6 +145,11 @@
     <ClInclude Include="Systems\Object\Tile.h" />
     <ClInclude Include="Systems\Object\TileMap.h" />
     <ClInclude Include="Scenes\AStarScene.h" />
+    <ClInclude Include="Systems\Object\Player.h" />
+    <ClInclude Include="Systems\Object\Unit.h" />
+    <ClInclude Include="Systems\Object\Tank.h" />
+    <ClInclude Include="Systems\PathFinder\PathFinder.h" />
+    <ClInclude Include="Scenes\TurnControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">

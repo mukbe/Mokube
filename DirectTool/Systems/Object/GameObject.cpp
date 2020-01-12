@@ -3,21 +3,21 @@
 #include "./Utilities/Matrix2D.h"
 
 GameObject::GameObject(string name)
-	: name(name), bActive(true), worldBuffer(nullptr), shader(nullptr), transform(nullptr)
+	: name(name), bActive(true), worldBuffer(nullptr), shaderKey("None")
 	, alpha(1.f), lifeTiem(0.f), frameTime(0.f)
 
 {
+	
 }
 
 GameObject::GameObject(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectType type ,Pivot p)
-	: name(name), bActive(true), worldBuffer(nullptr), shader(nullptr), transform(nullptr)
+	: name(name), bActive(true), worldBuffer(nullptr), shaderKey("None")
 	, alpha(1.f), size(size),  lifeTiem(0.f), frameTime(0.f), objectType(type)
 {
-	//worldBuffer = new WorldBuffer;
-	//shader = new Shader(L"./Shaders/Color.hlsl");
-	shader = Shaders->CreateShader("Color", L"Color.hlsl");
-	transform = new Matrix2D(pos, size, p);
 
+	worldBuffer = Buffers->FindShaderBuffer<WorldBuffer>();
+	transform = Matrix2D(pos, size, p);
+	
 	bActive = true;
 
 	frameX = frameY = 0;
@@ -29,8 +29,6 @@ GameObject::GameObject(string name, D3DXVECTOR2 pos, D3DXVECTOR2 size, ObjectTyp
 GameObject::~GameObject()
 {
 	Release();
-	SafeDelete(transform);
-	SafeDelete(worldBuffer);
 }
 
 void GameObject::Init()
@@ -92,29 +90,30 @@ void GameObject::Render(bool isRelative)
 {
 	if (bActive == false)return;
 
-	Matrix2D world = *transform;
+	Matrix2D world;
 
 	if (isRelative)
 	{
-		world = world * CAMERA->GetView();
+		world = transform * CAMERA->GetView();
 	}
 
 	world.Bind();
 
-	transform->Render();
+	//transform.Render();
 
 	
 }
 
 void GameObject::PostRender()
 {
+	if (shaderKey == "None") return;
 
 	CAMERA->CameraDataBind();
-	worldBuffer->Setting(transform->GetResult());
+	worldBuffer->Setting(transform.GetResult());
 	worldBuffer->SetPSBuffer(1);
-	shader->Render();
+	Shaders->BindShader(shaderKey);
 
-	UINT stride = sizeof(VertexColor);
+	UINT stride = sizeof(VertexType);
 	UINT offset = 0;
 
 	DeviceContext->IASetInputLayout(nullptr);

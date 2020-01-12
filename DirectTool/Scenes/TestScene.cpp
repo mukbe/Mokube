@@ -18,10 +18,10 @@ void TestScene::Init()
 {
 	SceneBase::Init();
 
-	map = new TileMap;
+	tileMap = new TileMap;
 	TileMap::tileMaxIndex = { 20,20 };
-	map->Init();
-	map->LoadFrame();
+	tileMap->Init();
+	tileMap->LoadFrame();
 
 }
 
@@ -39,7 +39,7 @@ void TestScene::Update(float tick)
 	SceneBase::Update(tick);
 
 	if(TileMap::bLoadFrame)
-		map->Update(tick);
+		tileMap->Update(tick);
 }
 
 void TestScene::PostUpdate()
@@ -62,5 +62,5 @@ void TestScene::ImguiRender()
 {
 	SceneBase::ImguiRender();
 
-	map->ImguiRender();
+	tileMap->ImguiRender();
 }

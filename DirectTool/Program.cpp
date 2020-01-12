@@ -2,6 +2,7 @@
 #include "Program.h"
 
 #include "./Scenes/TestScene.h"
+#include "./Scenes/AStarScene.h"
 
 Program::Program()
 {
@@ -9,7 +10,9 @@ Program::Program()
 	//jsonRoot = new Json::Value();
 	//JsonHelper::ReadData(L"LevelEditor.json", jsonRoot);
 
-	SceneBase* scene = new TestScene;
+	//SceneBase* scene = new TestScene;
+	//_SceneManager->AddScene(scene);
+	SceneBase* scene = new AStarScene;
 	_SceneManager->AddScene(scene);
 
 
@@ -20,6 +23,7 @@ Program::Program()
 		ImGuiIO& io = ImGui::GetIO();
 		io.Fonts->AddFontFromFileTTF("..//_Resources//TTF//Maplestory Light.ttf", 16.f, nullptr, io.Fonts->GetGlyphRangesKorean());
 	}
+	Shaders->CreateShader("Color", L"Color.hlsl");
 
 
 }

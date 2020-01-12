@@ -24,7 +24,7 @@ bool ImageManager::AddTexture(string key, wstring fileName)
 	}
 	
 
-	textures.insert(make_pair(key, shared_ptr<Texture>(new Texture(ResourcePath + fileName))));
+	textures.insert(make_pair(key, shared_ptr<Texture>(new Texture(fileName))));
 
 	return true;
 }
@@ -38,7 +38,7 @@ bool ImageManager::AddFrameTexture(string key, wstring fileName, UINT frameX, UI
 		return false;
 	}
 
-	textures.insert(make_pair(key, shared_ptr<Texture>(new Texture(ResourcePath + fileName, frameX, frameY))));
+	textures.insert(make_pair(key, shared_ptr<Texture>(new Texture( fileName, frameX, frameY))));
 
 	return true;
 }
@@ -100,7 +100,7 @@ void ImageManager::AllDeleteTexture()
 
 	for (;iter != textures.end(); ++iter)
 	{
-		Log_ErrorAssert(iter->second.use_count() != 1);
+		//Log_ErrorAssert(iter->second.use_count() == 1);
 	}
 
 	textures.clear();

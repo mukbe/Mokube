@@ -1,22 +1,25 @@
 #pragma once
 #include "SceneBase.h"
+
+class Player;
+class Unit;
+class Tank;
+class TurnControl;
 class AStarScene : public SceneBase
 {
 public:
 	AStarScene();
 	virtual ~AStarScene();
 
-	//virtual void Init();
-	//virtual void Release();
+	virtual void Init();
+	virtual void Update(float tick);
 
-	//virtual void PreUpdate();
-	//virtual void Update(float tick);
-	//virtual void PostUpdate();
 
-	//virtual void Render();
-	//virtual void PostRender();
-	//virtual void ImguiRender();
+
+
+
 private:
-
+	Player* player;
+	TurnControl* control;
 };
 
