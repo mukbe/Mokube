@@ -66,6 +66,8 @@ public:
 	void TurnOffAlphaBlend();
 	void TurnOnAlphaBlend();
 
+	void ReTargetRTV();
+
 public:
 	ID3D11Device* GetDevice() { return pD3dDevice; }
 	ID3D11DeviceContext* GetContext() { return pD3dContext; }
@@ -74,6 +76,8 @@ public:
 	ID3D11RenderTargetView* GetRenderTargetView()const { return this->pRenderTargetView; }
 	D3D_FEATURE_LEVEL GetFeatureLevel()const { return this->mFeatureLevel; }
 	//TODO ResizeScreen func
+
+
 
 //======================================================
 	SingletonHeader(DxRenderer)

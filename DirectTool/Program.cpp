@@ -25,6 +25,8 @@ Program::Program()
 	}
 	Shaders->CreateShader("Color", L"Color.hlsl");
 
+	buffer = make_unique<UIBuffer>();
+	Shaders->CreateShader("testShader", L"testShader.hlsl");
 
 }
 
@@ -59,10 +61,10 @@ void Program::Render()
 	p2DRenderer->DrawLine(D3DXVECTOR2(-10000, 0), D3DXVECTOR2(10000, 0));
 	p2DRenderer->DrawLine(D3DXVECTOR2(0, -10000), D3DXVECTOR2(0, 10000));
 
-	wstring str;
-	str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
-	str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
-	p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
+	//wstring str;
+	//str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
+	//str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
+	//p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
 }
 
 void Program::PostRender()
@@ -99,4 +101,39 @@ void Program::ResizeScreen()
 {
 	D3DDesc desc;
 	DxRenderer::GetDesc(&desc);
+}
+
+void Program::TestFunc()
+{
+
+
+	CAMERA->CameraDataBind();
+
+	UINT stride = sizeof(VertexType);
+	UINT offset = 0;
+
+	DeviceContext->IASetInputLayout(nullptr);
+	DeviceContext->IASetVertexBuffers(0, 0, nullptr, nullptr, nullptr);
+	DeviceContext->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
+	DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	buffer->Setting();
+
+	buffer->SetVSBuffer(2);
+	buffer->SetPSBuffer(2);
+	Shaders->BindShader("testShader");
+	_ImageManager->FindTexture("Player")->SetShaderResource(0);
+
+
+	pRenderer->TurnOnAlphaBlend();
+	DeviceContext->Draw(4, 0);
+	pRenderer->TurnOffAlphaBlend();
+
+	wstring str;
+	str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
+	str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
+	p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
+
+
+
 }

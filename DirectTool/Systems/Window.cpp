@@ -61,6 +61,14 @@ WPARAM Window::Run()
 				program->ImguiRender();
 				LOG->ImShowData();
 
+				pRenderer->ReTargetRTV();
+
+				p2DRenderer->GetRenderTarget()->BeginDraw();
+				//p2DRenderer->BeginDraw();
+				program->TestFunc();
+				p2DRenderer->EndDraw();
+
+
 				static bool bImguiWin = true;
 				ImGui::ShowDemoWindow(&bImguiWin);
 
