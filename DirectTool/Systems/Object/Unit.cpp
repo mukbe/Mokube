@@ -109,7 +109,7 @@ void StateIdle::Update()
 
 	if (!me->bMyTurn) return;
 	
-	if (Mouse::Get()->Down(1))
+	if (Mouse::Get()->Down(1) && me->name == "Player")
 	{
 		Tile* start, *end;
 		start = _TileMap->GetTile(me->transform.GetPos());
