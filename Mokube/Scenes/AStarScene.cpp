@@ -13,6 +13,8 @@ AStarScene::AStarScene()
 
 AStarScene::~AStarScene()
 {
+	SafeDelete(control);
+	SafeDelete(tileMap);
 }
 
 void AStarScene::Init()

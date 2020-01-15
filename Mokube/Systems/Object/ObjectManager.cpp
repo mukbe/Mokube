@@ -27,7 +27,7 @@ ObjectManager::~ObjectManager()
 		for (size_t t = 0; t < arrTemp.size();t++)
 		{
 			SafeDelete(arrTemp[t]);
-			//arrTemp.erase(arrTemp.begin() + t);
+
 		}
 		arrTemp.clear();
 	}
@@ -167,6 +167,7 @@ void ObjectManager::AddObject(GameObject * inputObject)
 
 void ObjectManager::DeleteObjects(ObjectType type)
 {
+
 	vector<GameObject*> vec = mapObjects[type];
 	for (int i = 0; i < vec.size(); i++)
 	{

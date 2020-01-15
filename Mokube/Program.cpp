@@ -14,7 +14,7 @@ Program::Program()
 	//_SceneManager->AddScene(scene);
 	SceneBase* scene = new AStarScene;
 	_SceneManager->AddScene(scene);
-
+	
 
 	//IMGUI FONT SETUP
 	//텍스트에 한 글자라고 한글이 들어간 경우 Imgui::Text(u8"테스트 TEST"); 
@@ -61,10 +61,10 @@ void Program::Render()
 	p2DRenderer->DrawLine(D3DXVECTOR2(-10000, 0), D3DXVECTOR2(10000, 0));
 	p2DRenderer->DrawLine(D3DXVECTOR2(0, -10000), D3DXVECTOR2(0, 10000));
 
-	//wstring str;
-	//str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
-	//str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
-	//p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
+	wstring str;
+	str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
+	str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
+	p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
 }
 
 void Program::PostRender()
@@ -103,37 +103,12 @@ void Program::ResizeScreen()
 	DxRenderer::GetDesc(&desc);
 }
 
-void Program::TestFunc()
+void Program::GameUIRender()
 {
+	//D2D + D3D 랜더링이 가능한 영역
+	//다만 순서는 D2D먼저 그려짐 이유는 Window.cpp에서 순서를 보면됨
 
-
-	CAMERA->CameraDataBind();
-
-	UINT stride = sizeof(VertexType);
-	UINT offset = 0;
-
-	DeviceContext->IASetInputLayout(nullptr);
-	DeviceContext->IASetVertexBuffers(0, 0, nullptr, nullptr, nullptr);
-	DeviceContext->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
-	DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-	buffer->Setting();
-
-	buffer->SetVSBuffer(2);
-	buffer->SetPSBuffer(2);
-	Shaders->BindShader("testShader");
-	_ImageManager->FindTexture("Player")->SetShaderResource(0);
-
-
-	pRenderer->TurnOnAlphaBlend();
-	DeviceContext->Draw(4, 0);
-	pRenderer->TurnOffAlphaBlend();
-
-	wstring str;
-	str += L"pos.x : " + to_wstring(CAMERA->GetMousePos().x).substr(0, 6);
-	str += L"pos.y : " + to_wstring(CAMERA->GetMousePos().y).substr(0, 6);
-	p2DRenderer->DrawText2D(Mouse::Get()->GetPosition().x - 200, Mouse::Get()->GetPosition().y - 20, str, 20);
-
+	//따라서 랜더링을 나눌 매니져급 객체가 필요
 
 
 }

@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{784638C9-E45F-43F1-A9DE-0AEC413C6D48}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>DirectTool</RootNamespace>
+    <RootNamespace>Mokube</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

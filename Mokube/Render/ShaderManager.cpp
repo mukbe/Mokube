@@ -6,9 +6,7 @@ SingletonCpp(ShaderManager)
 
 ShaderManager::ShaderManager()
 {
-	
 }
-
 
 ShaderManager::~ShaderManager()
 {
@@ -20,12 +18,10 @@ ShaderManager::~ShaderManager()
 		{
 			LOG->Warning(__FILE__, __LINE__, "shared_ptr<Shader> use count != 1");
 		}
-
 	}
 
 	shaders.clear();
 }
-
 
 shared_ptr<Shader> ShaderManager::CreateShader(string key, wstring fileName, Shader::ShaderType type, string funcName)
 {
@@ -56,15 +52,20 @@ shared_ptr<Shader> ShaderManager::FindShader(string key)
 
 void ShaderManager::BindShader(string key)
 {
-	currentShader = FindShader(key);
 
-	if (currentShader != nullptr)
-		currentShader->Render();
+	FindShader(key)->Render();
+
 }
 
 void ShaderManager::ReleaseShader()
 {
-	currentShader->ReleaseShader();
+	ID3D11DeviceChild* nullshader = {};
+
+	DeviceContext->VSSetShader((ID3D11VertexShader*)nullshader, nullptr, 0);
+	DeviceContext->PSSetShader((ID3D11PixelShader*)nullshader, nullptr, 0);
+	DeviceContext->HSSetShader((ID3D11HullShader*)nullshader, nullptr, 0);
+	DeviceContext->DSSetShader((ID3D11DomainShader*)nullshader, nullptr, 0);
+	DeviceContext->GSSetShader((ID3D11GeometryShader*)nullshader, nullptr, 0);
 }
 
 //ComputeShader * ShaderManager::CreateComputeShader(string key, wstring fileName, string entryPoint)
@@ -95,20 +96,3 @@ void ShaderManager::ReleaseShader()
 //	return nullptr;
 //}
 
-void ShaderManager::ShaderRelease()
-{
-	ShadersIter Iter = shaders.begin();
-
-	for (Iter; Iter != shaders.end(); ++Iter)
-	{
-		Iter->second->ReleaseShader();
-		//TODO 한번만 해도 되는것인지 확인해보고 나중에 변경할것
-		break;
-	}
-
-}
-
-void ShaderManager::Init()
-{
-	//this->CreateShader("colorGBuffer", L"001_GBuffer.hlsl", Shader::ShaderType::Default, "ColorDeferred");
-}

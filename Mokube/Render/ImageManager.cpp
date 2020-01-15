@@ -100,7 +100,11 @@ void ImageManager::AllDeleteTexture()
 
 	for (;iter != textures.end(); ++iter)
 	{
-		//Log_ErrorAssert(iter->second.use_count() == 1);
+		if (iter->second.use_count() != 1)
+		{
+			LOG->Warning(__FILE__, __LINE__, "shared_ptr<Testure> use count != 1");
+		}
+
 	}
 
 	textures.clear();

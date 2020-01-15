@@ -45,7 +45,7 @@ void Logging::Init(const char * filename)
 
 	D3DDesc desc;
 	DxRenderer::GetDesc(&desc);
-	handle.w << " '" << String::WStringToString(desc.AppName).c_str() << "' Start Succeeded" << endl;
+	handle.w << " '" << String::WStringToString(desc.AppName).c_str() << "'Log Start" << endl;
 }
 
 void Logging::Release()

@@ -438,3 +438,151 @@ Line: 21
 Code: shared_ptr<Shader> use count != 1
 			 End
 ===================================================
+===================================================
+ 2020.1.15	22:11:41	 'Directx11 2D' Start Succeeded
+22:11:48	Assertion Failure!
+File: e:\_mokube\mokube\render\shadermanager.cpp
+Line: 21
+Code: shared_ptr<Shader> use count != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	22:13:21	 'Directx11 2D'Log Start
+22:13:23	Assertion Failure!
+File: e:\_mokube\mokube\render\shadermanager.cpp
+Line: 21
+Code: shared_ptr<Shader> use count != 1
+===================================================
+ 2020.1.15	22:13:51	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	22:46:21	 'Directx11 2D'Log Start
+22:46:25	Assertion Failure!
+File: e:\_mokube\mokube\render\shadermanager.cpp
+Line: 21
+Code: shared_ptr<Shader> use count != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	22:48:36	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	22:49:16	 'Directx11 2D'Log Start
+22:49:18	Assertion Failure!
+File: e:\_mokube\mokube\render\shadermanager.cpp
+Line: 21
+Code: shared_ptr<Shader> use count != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	22:49:24	 'Directx11 2D'Log Start
+22:50:09	Assertion Failure!
+File: e:\_mokube\mokube\render\shadermanager.cpp
+Line: 21
+Code: shared_ptr<Shader> use count != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	22:50:14	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:01:50	 'Directx11 2D'Log Start
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:02:00	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:04:50	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:21:37	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:21:55	 'Directx11 2D'Log Start
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:25:08	 'Directx11 2D'Log Start
+23:25:11	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+23:25:24	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:26:12	 'Directx11 2D'Log Start
+23:26:29	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+23:26:54	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+===================================================
+ 2020.1.15	23:27:38	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:28:31	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:29:09	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:29:57	 'Directx11 2D'Log Start
+23:29:59	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+23:30:01	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:30:47	 'Directx11 2D'Log Start
+23:30:51	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+23:30:54	Fatal Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 103
+Code: iter->second.use_count() != 1
+===================================================
+ 2020.1.15	23:32:53	 'Directx11 2D'Log Start
+23:32:56	Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 105
+Code: shared_ptr<Testure> use count != 1
+===================================================
+ 2020.1.15	23:33:06	 'Directx11 2D'Log Start
+23:33:09	Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 105
+Code: shared_ptr<Testure> use count != 1
+===================================================
+ 2020.1.15	23:33:25	 'Directx11 2D'Log Start
+23:33:40	Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 105
+Code: shared_ptr<Testure> use count != 1
+===================================================
+ 2020.1.15	23:34:51	 'Directx11 2D'Log Start
+23:34:53	Assertion Failure!
+File: e:\_mokube\mokube\render\imagemanager.cpp
+Line: 105
+Code: shared_ptr<Testure> use count != 1
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:35:05	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:40:00	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:44:31	 'Directx11 2D'Log Start
+			 End
+===================================================
+===================================================
+ 2020.1.15	23:45:01	 'Directx11 2D'Log Start
+===================================================
+ 2020.1.15	23:45:14	 'Directx11 2D'Log Start
+			 End
+===================================================

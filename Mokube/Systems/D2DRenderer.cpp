@@ -76,6 +76,12 @@ void D2DRenderer::EndDraw()
 	d2dRenderTarget->EndDraw();
 }
 
+void D2DRenderer::BeginDrawWithoutClear()
+{
+	d2dRenderTarget->BeginDraw();
+	d2dRenderTarget->SetTransform(D2D1::IdentityMatrix());
+}
+
 HRESULT D2DRenderer::AddTextFormat(wstring fontname, float size)
 {
 	HRESULT hr;

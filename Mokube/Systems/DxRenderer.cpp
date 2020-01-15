@@ -399,7 +399,7 @@ void DxRenderer::EndDraw()
 	HResult(pSwapChain->Present(0, 0));
 }
 
-void DxRenderer::ReTargetRTV()
+void DxRenderer::DrawToD2DSharedBuffer()
 {
 	ID3D11RenderTargetView* nullview[1] = { nullptr };
 	pD3dContext->OMSetRenderTargets(0, nullview, nullptr);

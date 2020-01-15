@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 class ShaderManager
 {
 	SingletonHeader(ShaderManager)
@@ -13,10 +11,6 @@ public:
 
 	//class ComputeShader* CreateComputeShader(string key, wstring fileName, string entryPoint);
 	//ComputeShader* FindComputeShader(string key);
-public:
-	void Init();
-	void ShaderRelease();
-
 private:
 	typedef map<string, shared_ptr<Shader>> ShadersContain;
 	typedef map<string, shared_ptr<Shader>>::iterator ShadersIter;
@@ -25,9 +19,6 @@ private:
 
 private:
 	ShadersContain shaders;
-	shared_ptr<Shader> currentShader;
-	//ComputeShadersContain computeShaders;
-	//class ComputeShader* computeShader;
 };
 
 #define Shaders ShaderManager::Get()

@@ -18,6 +18,7 @@ public:
 	void Create2DBuffer();
 	void BeginDraw();
 	void EndDraw();
+	void BeginDrawWithoutClear();
 
 	HRESULT AddTextFormat(wstring fontname, float size);
 

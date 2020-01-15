@@ -66,7 +66,7 @@ public:
 	void TurnOffAlphaBlend();
 	void TurnOnAlphaBlend();
 
-	void ReTargetRTV();
+	void DrawToD2DSharedBuffer();
 
 public:
 	ID3D11Device* GetDevice() { return pD3dDevice; }
