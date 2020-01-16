@@ -1,0 +1,12 @@
+{
+   "ImageData" : {
+      "FrameMaxIndex" : [ 2.0, 2.0 ],
+      "ImagePath" : [ "../_Resources/DefaultTileMap.png" ]
+   },
+   "TileData" : {
+      "TileData" : [ "../_Resources/TileIndex.index" ]
+   },
+   "TileLUT" : {
+      "TileLUTData" : [ "../_Resources/TileLUT.lut" ]
+   }
+}

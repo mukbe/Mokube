@@ -114,7 +114,7 @@ void StateIdle::Update()
 		Tile* start, *end;
 		start = _TileMap->GetTile(me->transform.GetPos());
 		end = _TileMap->GetTile(CAMERA->GetMousePos());
-		if ((Math::Abs(start->GetTileIndex().x - end->GetTileIndex().x) + Math::Abs(start->GetTileIndex().y - end->GetTileIndex().y)) < 3)
+		if ((Math::Abs(start->GetTileIndex().x - end->GetTileIndex().x) + Math::Abs(start->GetTileIndex().y - end->GetTileIndex().y)) < 100)
 		{
 			me->path = _PathFinder->GetPath(start, end);
 			me->bMoving = true;

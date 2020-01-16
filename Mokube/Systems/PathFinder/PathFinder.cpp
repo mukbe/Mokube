@@ -103,7 +103,13 @@ void PathFinder::CheckOpenList(Node * currentNode)
 		for (size_t t = 0; t < openList.size(); t++)
 		{
 			if (tile == openList[t]->tile)
-				return;
+			{
+				if (openList[t]->CostFromStart < currentNode->CostFromStart + 10 * sqrtf((abs(dir.x) + abs(dir.y))) )
+				{
+					CreateChildNode(openList[t]->parent, tile);
+					return;
+				}
+			}
 		}
 		int temp = tile->GetAttribute() & Tile::TileBitAttribute::Immovable;
 		
@@ -125,6 +131,12 @@ void PathFinder::CheckOpenList(Node * currentNode)
 	AddOpenList({ 1, 0 });
 	AddOpenList({ 0, -1 });
 	AddOpenList({ 0, 1});
+
+	AddOpenList({ -1, -1 });
+	AddOpenList({ 1, 1 });
+	AddOpenList({ 1, -1 });
+	AddOpenList({ -1, 1 });
+
 
 }
 

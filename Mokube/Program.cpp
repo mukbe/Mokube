@@ -25,9 +25,8 @@ Program::Program()
 	}
 	Shaders->CreateShader("Color", L"Color.hlsl");
 
-	buffer = make_unique<UIBuffer>();
 	Shaders->CreateShader("testShader", L"testShader.hlsl");
-
+	
 }
 
 Program::~Program()
@@ -111,4 +110,9 @@ void Program::GameUIRender()
 	//따라서 랜더링을 나눌 매니져급 객체가 필요
 
 
+}
+
+void Program::Print(char str[], ...)
+{
+	cout << str << endl;
 }

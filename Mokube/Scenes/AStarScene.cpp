@@ -23,12 +23,12 @@ void AStarScene::Init()
 
 	TileMap::tileMaxIndex = { 20,20 };
 	tileMap = new TileMap;
-	tileMap->Init(ResourcePath + L"TileMap.json");
+	tileMap->Init(ResourcePath + L"Test.json");
 
 	_ImageManager->AddFrameTexture("Player", ResourcePath + L"player_idle.png", 4, 1);
 	_ImageManager->AddFrameTexture("Unit", ResourcePath + L"monster04_idle.png", 4, 6);
 
-	D3DXVECTOR2 pos = tileMap->GetTilePos({ 1,1 }) + TileMap::tileSize * 0.5f;
+	D3DXVECTOR2 pos = tileMap->GetTilePos({ 0,0 }) + TileMap::tileSize * 0.5f;
 	player = new Player("Player", pos, D3DXVECTOR2(32, 32), ObjectType::Character);
 	_ObjectPool->AddObject(player);
 

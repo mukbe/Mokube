@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 #include <queue>
 //씬이 넘어갈때마다 메세지 내용을 초기화 시켜줘야 한다
 

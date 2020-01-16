@@ -55,7 +55,8 @@ public:
 	const D3DXVECTOR2& GetSize() { return size; }
 
 
-
+	virtual UINT GetFrameX() { return frameX;}
+	virtual UINT GetFrameY() { return frameY; }
 
 
 

@@ -7,12 +7,6 @@ ObjectManager::ObjectManager()
 	mapObjects.clear();
 	vector<class GameObject*> arrTemp;
 	arrTemp.clear();
-	//mapObjects.insert(make_pair(Background, arrTemp));
-	//mapObjects.insert(make_pair(Character, arrTemp));
-	//mapObjects.insert(make_pair(Monster, arrTemp));
-	//mapObjects.insert(make_pair(StaticObject, arrTemp));
-	//mapObjects.insert(make_pair(Effect, arrTemp));
-	//mapObjects.insert(make_pair(UI, arrTemp));
 }
 
 

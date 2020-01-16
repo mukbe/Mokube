@@ -45,6 +45,11 @@ public:
 	void SetAttribute(int val);
 	void SetIndex(POINT pt) { tileIndex = pt; }
 	void SetIndex(int x, int y) { tileIndex = { x,y }; }
+	void SetFrameIndex(int x, int y)
+	{
+		frameX = x;
+		frameY = y;
+	}
 private:
 	POINT tileIndex;
 	shared_ptr<Texture> tileMapImage;

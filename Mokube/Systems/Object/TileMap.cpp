@@ -71,7 +71,7 @@ void TileMap::Update(float tick)
 			POINT index = tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x]->GetTileIndex();
 			if (pickedframes.size() != 0)
 			{
-				POINT frameIndex = pickedframes[0]->GetTileIndex();
+				POINT frameIndex = {pickedframes[0]->GetFrameX(), pickedframes[0]->GetFrameY()};
 				if (index.x != frameIndex.x || index.y != frameIndex.y)
 				{
 					_GameWorld->GetMessagePool()->ReserveMessage(tiles[tileMaxIndex.x * currentIndex.y + currentIndex.x], "SetFrameIndex", 0, frameIndex);
@@ -212,7 +212,7 @@ void TileMap::LoadFrame(string key)
 		for (int x = 0; x < (int)frameMaxIndex.x; x++)
 		{
 			Tile* tile = new Tile("Tile", D3DXVECTOR2(frameStart.x + frameSize.x * x, frameStart.y + frameSize.y * y), frameSize, ObjectType::Tiles, Pivot::LEFT_TOP);
-			tile->SetIndex(x, y);
+			tile->SetFrameIndex(x, y);
 			tile->SetTexture(defaultKey);
 			frames.push_back(tile);
 			_GameWorld->GetObjectPool()->AddObject(tile);
@@ -287,8 +287,8 @@ void TileMap::Save(wstring file)
 				for (int i = 0; i < lut.size(); i++)
 				{
 					//lut에 있는지 확인하고 있으면 lut번호로 추가
-					if (lut[i].GetTileIndex().x == tile->GetTileIndex().x &&
-						lut[i].GetTileIndex().y == tile->GetTileIndex().y && 
+					if (lut[i].GetFrameX() == tile->GetFrameX() &&
+						lut[i].GetFrameY() == tile->GetFrameY() && 
 						lut[i].GetAttribute() == tile->GetAttribute())
 					{
 						//바이너리로 LUT인덱스 저장
@@ -323,8 +323,8 @@ void TileMap::Save(wstring file)
 		for (int i = 0; i < lut.size(); i++)
 		{
 			D3DXVECTOR2 index;
-			index.x = lut[i].GetTileIndex().x;
-			index.y = lut[i].GetTileIndex().y;
+			index.x = lut[i].GetFrameX();
+			index.y = lut[i].GetFrameY();
 			wLUT->Vector2(index);
 
 			int attribute;
