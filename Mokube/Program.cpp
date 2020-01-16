@@ -111,8 +111,3 @@ void Program::GameUIRender()
 
 
 }
-
-void Program::Print(char str[], ...)
-{
-	cout << str << endl;
-}

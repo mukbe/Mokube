@@ -23,7 +23,6 @@ public:
 	void GameUIRender();
 
 
-	void Print(char str[], ...);
 
 private:
 
